@@ -114,7 +114,7 @@ class PDFViewer(Toplevel):
             print("Последнее действие отменено")
 
     def sign_pdf(self):
-        sign(self.input_pdf_path.get(), 'temp_output.pdf', self.click_positions)
+        sign(self.input_pdf_path.get(), 'tmp/temp_output.pdf', self.click_positions)
         self.destroy()  # Закрываем окно просмотра PDF перед сохранением
         self.save_pdf()
 
@@ -129,8 +129,8 @@ class PDFViewer(Toplevel):
             initialfile=suggested_output_name
         )
         if file_path:
-            if os.path.exists('temp_output.pdf'):
-                os.rename('temp_output.pdf', file_path)
+            if os.path.exists('tmp/temp_output.pdf'):
+                os.rename('tmp/temp_output.pdf', file_path)
                 messagebox.showinfo("Сохранение", "Файл сохранен")
             else:
                 messagebox.showerror("Ошибка", "Файл temp_output.pdf не найден")
