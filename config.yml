@@ -1,0 +1,30 @@
+path:
+  default: '~/Documents'
+
+font:
+  name: 'MonoFont'
+  size: 9
+  path: 'resources/DejaVuSansMono.ttf'
+
+images:
+  signature:
+    path: 'resources/sygnature.png'
+    positions:
+      - page: 2
+        x: 150
+        y: 70
+      - page: 4
+        x: 530
+        y: 185
+  print:
+    path: 'resources/print.png'
+    positions:
+      - page: 4
+        x: 600
+        y: 110
+  checkmark:
+    path: 'resources/checkmark.png'
+
+texts:
+  - content: 'А.А. Федоточкин'
+  - content: 'Федоточкин Анатолий Александрович'
