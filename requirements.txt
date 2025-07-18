@@ -5,7 +5,6 @@ ci-info==0.3.0
 click==8.1.7
 etelemetry==0.3.1
 filelock==3.15.4
-fitz==0.0.1.dev0
 httplib2==0.22.0
 idna==3.7
 isodate==0.6.1
@@ -21,7 +20,7 @@ pathlib==1.0.1
 pillow==10.3.0
 prov==2.0.1
 pydot==3.0.1
-PyMuPDF==1.24.9
+PyMuPDF==1.26.3
 PyMuPDFb==1.24.9
 pyparsing==3.1.2
 PyPDF2==3.0.1

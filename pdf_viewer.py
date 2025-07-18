@@ -1,7 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import Toplevel, Canvas, Button, filedialog, messagebox, Radiobutton, StringVar, simpledialog, OptionMenu, Frame, PhotoImage
-import fitz  # PyMuPDF
+import pymupdf  # PyMuPDF
 from pdf_processing import sign
 from config import config
 
@@ -39,7 +39,7 @@ class PDFViewer(Toplevel):
         self.canvas = Canvas(self, bg="white")
         self.canvas.pack(fill=tk.BOTH, expand=True)
 
-        self.pdf_document = fitz.open(pdf_path)
+        self.pdf_document = pymupdf.open(pdf_path)
         self.current_page = 0
         self.click_positions = click_positions
         self.input_pdf_path = input_pdf_path
