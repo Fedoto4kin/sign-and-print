@@ -1,3 +1,7 @@
 # Исключить каталоги служебных файлов
 .idea/
 __pycache__/
+venv/
+tmp/
+*.pyc
+.DS_Store
