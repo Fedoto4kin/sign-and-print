@@ -1,0 +1,5 @@
+Icons from Lucide (https://lucide.dev)
+License: ISC / MIT — see https://github.com/lucide-icons/lucide/blob/main/LICENSE
+
+Used:
+  hand, signature, stamp, type, folder-open, undo-2, badge-check, zoom-in, zoom-out
