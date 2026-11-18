@@ -1,0 +1,22 @@
+# Скопируйте в config.local.yml и укажите свои файлы.
+# config.local.yml не коммитится.
+
+path:
+  default: '~/Documents'
+  last_open: null
+  last_save: null
+
+font:
+  size: 9
+
+images:
+  signature:
+    path: resources/local/signature.png
+    scale: 1.0
+  print:
+    path: resources/local/print.png
+    scale: 1.0
+
+texts:
+  - content: И.И. Иванов
+  - content: Иванов Иван Иванович

@@ -1,15 +1,90 @@
+import copy
 import os
 import yaml
 
-CONFIG_PATH = 'config.yml'
+BASE_CONFIG_PATH = 'config.yml'
+LOCAL_CONFIG_PATH = 'config.local.yml'
 
-with open(CONFIG_PATH, 'r', encoding='utf-8') as config_file:
-    config = yaml.safe_load(config_file)
+# Ключи, которые хранятся только локально (не в общем config.yml)
+_LOCAL_IMAGE_KEYS = ('path', 'scale')
+
+
+def _deep_merge(base, overlay):
+    """Рекурсивно накладывает overlay на base (словари)."""
+    result = copy.deepcopy(base)
+    if not overlay:
+        return result
+    for key, value in overlay.items():
+        if (
+            key in result
+            and isinstance(result[key], dict)
+            and isinstance(value, dict)
+        ):
+            result[key] = _deep_merge(result[key], value)
+        else:
+            result[key] = copy.deepcopy(value)
+    return result
+
+
+def _load_yaml(path):
+    if not os.path.isfile(path):
+        return {}
+    with open(path, 'r', encoding='utf-8') as fh:
+        data = yaml.safe_load(fh) or {}
+    if not isinstance(data, dict):
+        return {}
+    return data
+
+
+def _extract_local_overlay(full_config):
+    """Выделить персональные настройки для config.local.yml."""
+    path_cfg = full_config.get('path') or {}
+    images = full_config.get('images') or {}
+    font = full_config.get('font') or {}
+
+    local = {
+        'path': {
+            'default': path_cfg.get('default'),
+            'last_open': path_cfg.get('last_open'),
+            'last_save': path_cfg.get('last_save'),
+        },
+        'font': {
+            'size': font.get('size'),
+        },
+        'images': {},
+        'texts': copy.deepcopy(full_config.get('texts') or []),
+    }
+
+    for name in ('signature', 'print'):
+        src = images.get(name) or {}
+        local['images'][name] = {
+            key: src[key] for key in _LOCAL_IMAGE_KEYS if key in src
+        }
+
+    return local
+
+
+def load_config():
+    base = _load_yaml(BASE_CONFIG_PATH)
+    local = _load_yaml(LOCAL_CONFIG_PATH)
+    return _deep_merge(base, local)
+
+
+config = load_config()
 
 
 def save_config():
-    with open(CONFIG_PATH, 'w', encoding='utf-8') as config_file:
-        yaml.safe_dump(config, config_file, allow_unicode=True, sort_keys=False)
+    """Сохраняет персональные настройки в config.local.yml."""
+    local_data = _extract_local_overlay(config)
+    with open(LOCAL_CONFIG_PATH, 'w', encoding='utf-8') as fh:
+        yaml.safe_dump(local_data, fh, allow_unicode=True, sort_keys=False)
+
+
+def reload_config():
+    """Перечитать base+local в глобальный config (на месте)."""
+    fresh = load_config()
+    config.clear()
+    config.update(fresh)
 
 
 def _path_section():

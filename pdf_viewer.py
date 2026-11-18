@@ -122,7 +122,7 @@ class ResourcesDialog(Toplevel):
         try:
             save_config()
         except OSError as exc:
-            messagebox.showerror('Ошибка', f'Не удалось сохранить config.yml:\n{exc}', parent=self)
+            messagebox.showerror('Ошибка', f'Не удалось сохранить config.local.yml:\n{exc}', parent=self)
             return
         self.on_apply()
         self.destroy()

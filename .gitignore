@@ -5,3 +5,7 @@ venv/
 tmp/
 *.pyc
 .DS_Store
+
+# Локальные персональные ресурсы и настройки
+config.local.yml
+resources/local/
