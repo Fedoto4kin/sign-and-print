@@ -1,30 +1,36 @@
 path:
-  default: '~/Documents'
-
+  default: ~/Documents
+  last_open: /home/tolli/Documents/СНТ/АтомЭнергоСбыт/2024
+  last_save: null
 font:
-  name: 'MonoFont'
+  name: MonoFont
   size: 9
-  path: 'resources/DejaVuSansMono.ttf'
-
+  path: resources/DejaVuSansMono.ttf
 images:
   signature:
-    path: 'resources/sygnature.png'
+    path: resources/sygnature.png
+    scale: 1.0
     positions:
-      - page: 2
-        x: 150
-        y: 70
-      - page: 4
-        x: 530
-        y: 185
+    - page: 2
+      x: 150
+      y: 70
+    - page: 4
+      x: 530
+      y: 185
   print:
-    path: 'resources/print.png'
+    path: resources/print.png
+    scale: 1.0
     positions:
-      - page: 4
-        x: 600
-        y: 110
+    - page: 4
+      x: 600
+      y: 110
   checkmark:
-    path: 'resources/checkmark.png'
-
+    path: resources/checkmark.png
 texts:
-  - content: 'А.А. Федоточкин'
-  - content: 'Федоточкин Анатолий Александрович'
+- content: А.А. Федоточкин
+- content: Федоточкин Анатолий Александрович
+viewer:
+  zoom: 1.0
+  min_zoom: 0.5
+  max_zoom: 2.5
+  zoom_step: 0.1
