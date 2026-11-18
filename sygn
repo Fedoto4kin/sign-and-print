@@ -1,0 +1,13 @@
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+VENV="$SCRIPT_DIR/venv"
+
+if [ ! -d "$VENV" ]; then
+    echo "Venv not found, create..."
+    python3 -m venv "$VENV"
+fi
+
+source "$VENV/bin/activate"
+python main.py
+deactivate
+
